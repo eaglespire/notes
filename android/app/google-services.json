@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "625677163648",
+    "project_id": "eaglespirecode",
+    "storage_bucket": "eaglespirecode.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625677163648:android:99db4303e42dd082a31a65",
+        "android_client_info": {
+          "package_name": "com.example.firebase_firestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625677163648-atifsvm9nq712j1jn1kepno1ratppplp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt7HYlPojliHqAowmfWzWZO2ZBX3SLpw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625677163648-atifsvm9nq712j1jn1kepno1ratppplp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
