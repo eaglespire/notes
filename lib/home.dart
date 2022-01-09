@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_firestore/note.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -184,49 +185,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemBuilder: (context, index) {
                   final DocumentSnapshot documentSnapshot =
                       streamSnapshot.data!.docs[index];
-                  return Card(
-                    // color:
-                    //     Colors.primaries[_random.nextInt(Colors.primaries.length)]
-                    //         [_random.nextInt(9) * 100],
-                    color: colors[_random.nextInt(colors.length - 1)],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            documentSnapshot['category'],
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          Text(
-                            documentSnapshot['title'],
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                          Text(
-                            documentSnapshot['date'].toString(),
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // // Press this button to edit a single note
-                              IconButton(
-                                icon: const Icon(Icons.edit),
-                                onPressed: () =>
-                                    _createOrUpdate(documentSnapshot),
-                              ),
-// // This icon button is used to delete a single note
-                              IconButton(
-                                  icon: const Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                  ),
+                  return InkWell(
+                    splashColor: colors[_random.nextInt(colors.length - 1)],
+                    onTap: () {
+                      print('This is working');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Note(
+                              title: documentSnapshot['title'],
+                              body: documentSnapshot['body'],
+                              date: documentSnapshot['date'],
+                              category: documentSnapshot['category'],
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: Card(
+                      // color:
+                      //     Colors.primaries[_random.nextInt(Colors.primaries.length)]
+                      //         [_random.nextInt(9) * 100],
+                      color: colors[_random.nextInt(colors.length - 1)],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              documentSnapshot['category'],
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                            Text(
+                              documentSnapshot['title'],
+                              style: Theme.of(context).textTheme.headline5,
+                            ),
+                            Text(
+                              documentSnapshot['date'].toString(),
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // // Press this button to edit a single note
+                                IconButton(
+                                  icon: const Icon(Icons.edit),
                                   onPressed: () =>
-                                      _deleteNote(documentSnapshot.id)),
-                            ],
-                          )
-                        ],
+                                      _createOrUpdate(documentSnapshot),
+                                ),
+// // This icon button is used to delete a single note
+                                IconButton(
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: () =>
+                                        _deleteNote(documentSnapshot.id)),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );
